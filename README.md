@@ -106,6 +106,16 @@ There are two possible ways to submit this project to Canvas. Lambda Staff will 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+
+  Relational databases protect their records data integrity by constraints characterising their relationship. SQL can do the same thing but it takes more code to write and is not as easy to represent with UML diagrams since SQL is not relationship based. 
 2. Why do tables need a Primary Key?
+
+  Tables need a primary key because each records row needs to matchup with that primary key so each rows data integrity is protected. Without any unique primary key existing within records, pinpointing records would be very difficult. 
+
 3. What is the name given to a table column that references the Primary Key on another table?
+
+  A foreign key is a reference to another primary key in a different table. 
+
 4. What do we need in order to have a _many to many_ relationship between two tables?
+
+  There must be a unique primary key in each table which is never null. Then a new table can be made to refernce that tables foreign key. With these proper contrainsts, every row of data keeps its integrity as a true reference of data records. 
