@@ -4,6 +4,12 @@
   "description": "Data Persistence Challenge",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "ketchup": "git fetch && git reset --hard origin/Nicholas-Lacapria",
+    "migratedb": "knex migrate:latest",
+    "rollbackdb": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "pushcg": "git push origin Nicholas-Lacapria",
     "server": "nodemon index.js",
     "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent"
   },
