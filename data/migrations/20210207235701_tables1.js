@@ -11,8 +11,8 @@ exports.up = function(knex) {
     .createTable('resource', tab =>{
         tab.increments('resource_id').unsigned();
         // tab.integer('project_id');
-        tab.string('resource_name',128).notNullable();
-        tab.string('resource_description').notNullable();
+        tab.string('resource_name',128).notNullable().unique();
+        tab.string('resource_description');
         tab.boolean('resource_completed');
     })
 };
