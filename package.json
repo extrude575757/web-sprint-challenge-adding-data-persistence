@@ -4,6 +4,7 @@
   "description": "Data Persistence Challenge",
   "main": "index.js",
   "scripts": {
+    "rmdb": "rm data/lambda.db3 ; echo 'cleared your database' ; ",
     "start": "node index.js",
     "ketchup": "git fetch && git reset --hard origin/Nicholas-Lacapria",
     "migratedb": "knex migrate:latest",

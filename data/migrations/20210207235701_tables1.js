@@ -15,8 +15,21 @@ exports.up = function(knex) {
         tab.string('resource_description');
         tab.boolean('resource_completed');
     })
+    .createTable('task', tab =>{
+        tab.increments('task_id').unsigned();
+        tab.string('task_description').notNullable();
+        tab.string('task_notes')
+        tab.boolean('task_completed');
+        tab.integer('project_id').notNullable()
+            .references('id').inTable('projects')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
+    })
 };
 
 exports.down = function(knex) {
-  
+    return knex.schema
+        .dropTableIfExists('resource')
+        .dropTableIfExists('task')
+        .dropTableIfExists('projects')
 };

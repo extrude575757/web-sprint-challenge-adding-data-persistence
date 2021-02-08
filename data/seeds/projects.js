@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('projects').del()
+  return knex('projects').truncate()
     .then(function () {
       // Inserts seed entries
       return knex('projects').insert([
@@ -13,7 +13,10 @@ exports.seed = function(knex) {
       },
         {id: 3, name: 'rowValue3', description:'prck'
         ,completed: true
-      }
+      },
+      {id: 4, name: 'rowValue36', description:'prck'
+      ,completed: false
+    }
       ]);
     });
 };
