@@ -6,7 +6,7 @@ const express = require("express");
 // const UsersPo = require('./userPost-model')
 const model = require('./model')
 const router = express.Router();
-
+const { checkNew } = require('../middleware/index.js')
 /* 
   - [ ] `[POST] /api/projects`
     - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
@@ -17,27 +17,20 @@ const router = express.Router();
     - Example of response body: `[{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}]`
 */
 
-router.get('/', async (req, res) => {
+router.get('/',  (req, res,next) => {
 
 
     // get all projectss
-    try{
-            const proj = await model.projDB();
-           if(proj === undefined){
-            res.status(404).json({
-                message: 'Failed 404 get /api/projects'
-            })
-           }else{
-            res.status(200).json(proj);
-           }
-    }
-      catch(error) {
-        res.status(500).json({
-            message: 'failed 500 api/proj ',
-            error});
-      
-}
-
+    model.projDB('/', checkNew , (req,res,next) )
+        .then( a =>{
+            console.log(req.body,a);
+            // res.status(200).json(a);
+            next();
+        })
+        .catch( e =>{
+            next();
+            console.log(e);
+        })
 
 });
 // server.get('/api/projects', (req, res) => {
@@ -51,12 +44,12 @@ router.get('/', async (req, res) => {
 //       });
 //   })
 
-// router.use((error, req, res, next) => {
-//     res.status(500).json({
-//       info: 'something horrible happened inside the actions router',
-//       message: error.message,
-//       stack: error.stack,
-//     })
-//   })
+router.use((error, req, res, next) => {
+    res.status(500).json({
+      info: 'something horrible happened inside the projects router 500',
+      message: error.message,
+      stack: error.stack,
+    })
+  })
 
 module.exports = router;

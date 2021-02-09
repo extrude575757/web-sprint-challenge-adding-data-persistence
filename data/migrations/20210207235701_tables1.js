@@ -11,7 +11,7 @@ exports.up = function(knex) {
         tab.increments('id').unsigned();
         tab.string('name').notNullable();
         tab.string('description').notNullable();
-        tab.boolean('completed')
+        tab.boolean('completed').defaultsTo(false);
     })
 
     .createTable('resource', tab =>{
