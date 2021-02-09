@@ -1,4 +1,10 @@
 
+/*
+A **resource assignment** connects a resource and a project, and is stored in a `
+project_resources` table. You decide what columns to use.
+
+*/
+
 exports.up = function(knex) {
     return knex.schema
     .createTable('projects', tab =>{

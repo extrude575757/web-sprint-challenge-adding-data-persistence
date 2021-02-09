@@ -1,25 +1,26 @@
 // build your server here
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 
-const db = require('../data/db-config.js');
 
 const server = express();
 
 server.use(helmet());
+server.use(cors());
 server.use(express.json());
+const ProjRouter  = require('./project/router')
+server.use('/api/projects', ProjRouter)
 
-server.get('/api/projects', (req, res) => {
-  // get all projectss
-  db('projects')
-    .then(p => {
-      res.status(200).json(p);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
-
+server.get('/', async(req, res) => {
+    const nameInsert = (req.id) ? ` ${req.id}` : '';
+  
+    res.send(`
+      <h2>Actions ${nameInsert} </h2>
+      <p>Welcome to ${req.headers['projects']} in a project </p>
+    `);
+  });
+  
 
 
 
