@@ -9,16 +9,19 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-// server.get('/api/projects', (req, res) => {
-//   // get all projectss
-//   db('projects')
-//     .then(p => {
-//       res.status(200).json(p);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
+server.get('/api/projects', (req, res) => {
+  // get all projectss
+  db('projects')
+    .then(p => {
+      res.status(200).json(p);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
+
+
 
 // server.get('/api/animals', (req, res) => {
 //   // get all animals from the database
